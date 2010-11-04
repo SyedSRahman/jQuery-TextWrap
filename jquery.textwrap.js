@@ -2,11 +2,12 @@
   $.fn.textwrap = function( options ){
 
     var settings = {
-      match : '',
-      put : '',
-      wrap : 'span',
       klass : 'textwrap',
-      skip : 'iframe,script,style'
+      match : '',
+      put   : '',
+      reset : '',
+      skip  : 'iframe,script,style',
+      wrap  : 'span'
     };
 
     var dress = function(node){
@@ -42,6 +43,14 @@
       return dressd;
     };
 
+    var reset = function(node){
+      $('.'+settings.reset,node).each(function(){
+        var text = $(this).text();
+        text = document.createTextNode(text);
+        this.parentNode.replaceChild(text,this);
+      })
+    }
+
     return this.each(function(){
 
       if(options){
@@ -53,6 +62,10 @@
       //convert the matching pattern to regex if not already
       if(settings.match && (typeof settings.match == 'string')){
         settings.match = new RegExp(settings.match,'i');
+      }
+
+      if($.trim(settings.reset)){
+        reset(this);
       }
       
       if(settings.match){
