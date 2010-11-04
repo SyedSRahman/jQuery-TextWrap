@@ -5,7 +5,7 @@
       klass : 'textwrap',
       match : '',
       put   : '',
-      reset : '',
+      reset : false,
       skip  : 'iframe,script,style',
       wrap  : 'span'
     };
@@ -44,7 +44,7 @@
     };
 
     var reset = function(node){
-      $('.'+settings.reset,node).each(function(){
+      $('.'+settings.klass,node).each(function(){
         var text = $(this).text();
         text = document.createTextNode(text);
         this.parentNode.replaceChild(text,this);
@@ -64,7 +64,7 @@
         settings.match = new RegExp(settings.match,'i');
       }
 
-      if($.trim(settings.reset)){
+      if(settings.reset && $.trim(settings.klass)){
         reset(this);
       }
       
