@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>jQuery TextWrap Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script src="jquery.textwrap.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('body').textwrap({
+          attr : {'href' : function(){ return $(this).text(); }, 'target' : '_blank', 'style' : 'font-size: 1.5em; color: maroon;'},
+          match : /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&amp;%@!\-\/]))?/i,
+          skip: ['iframe','script','style','object','embed'],
+          wrap : 'a'
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>A very simple example</h1>
+    <ul>
+      <li>http://www.google.com</li>
+      <li>http://www.yahoo.com</li>
+      <li>http://www.ubuntu.com</li>
+      <li>http://www.github.com</li>
+    </ul>
+  </body>
+</html>
